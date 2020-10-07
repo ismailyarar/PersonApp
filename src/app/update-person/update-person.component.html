@@ -15,7 +15,7 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="pricing-header form-block mx-auto">
-      <!-- Student's Edit Form -->
+      <!-- Person's Edit Form -->
       <form [formGroup]="updateForm" (ngSubmit)="UpdateForm()" novalidate>
         <div class="row">
           <div class="col-lg-5 col-md-12 col-sm-12">
@@ -82,13 +82,13 @@
                 class="btn btn-success btn-block"
                 [disabled]="!updateForm.valid"
               >
-                Update Student
+                Update Person
               </button>
             </div>
           </div>
         </div>
       </form>
-      <!-- Student's Edit Form ends-->
+      <!-- Person's Edit Form ends-->
     </div>
   </div>
 </div>

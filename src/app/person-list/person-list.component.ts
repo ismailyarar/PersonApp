@@ -37,7 +37,7 @@ export class PersonListComponent implements OnInit {
   }
 
   //  Basit Person verileri listesini getirmek için valueChanges () yöntemini kullanma.
-  //  Person veri listesinde herhangi bir değişiklik meydana geldiğinde, hideWhenNoStudent, noData ve preLoader değişkenlerinin durumunu gerçek zamanlı olarak günceller.
+  //  Person veri listesinde herhangi bir değişiklik meydana geldiğinde, hideWhenNoPerson, noData ve preLoader değişkenlerinin durumunu gerçek zamanlı olarak günceller.
   dataState() {
     this.crudService
       .getPersonsList()
