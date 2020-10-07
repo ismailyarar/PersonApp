@@ -1,0 +1,102 @@
+<div
+  class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+>
+  <h1 class="h2">Person List</h1>
+
+  <!-- Person verisi yoksa gösterilmez-->
+  <a routerLink="/person-add" class="btn btn-success" *ngIf="hideWhenNoPerson">
+    <i class="fas fa-plus custom-fa-plus"></i>
+    Add Person
+  </a>
+</div>
+<!-- Preloader veri yüklenmeden önce gösterir -->
+<div class="pricing-header mx-auto">
+  <div class="no-data text-center" *ngIf="preLoader">
+    <img src="assets/preloader.gif" class="preloader-icon" alt="No Person" />
+  </div>
+  <!-- veri olmadığında kimse gösterilmez -->
+  <div class="no-data text-center" *ngIf="noData">
+    <img src="assets/no-person.svg" class="nodata-msg" alt="No Person" />
+    <p class="nodata-msg">Henüz kişi eklenmedi!</p>
+    <a routerLink="/person-add" class="btn btn-success">
+      <i class="fas fa-plus custom-fa-plus"></i>
+      Add Person
+    </a>
+  </div>
+
+  <!-- kişileri gösterme -->
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Arama metninizi giriniz"
+      [(ngModel)]="filterText"
+    />
+
+    <small *ngIf="filterText" class="form-text text-muted">
+      Şu an <strong>{{ filterText }} </strong>aradınız
+    </small>
+  </div>
+
+  <div class="table-responsive" *ngIf="hideWhenNoPerson">
+    <table
+      class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg"
+    >
+      <thead>
+        <tr>
+          <th scope="col">Person Id</th>
+          <th scope="col">First Name</th>
+          <th scope="col">E-mail</th>
+          <th scope="col">Mobile Number</th>
+          <th class="text-center" scope="col">Edit</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr
+          *ngFor="
+            let person of Person | personFilter: filterText;
+            paginate: { itemsPerPage: 7, currentPage: p };
+            let i = index
+          "
+        >
+          <th scope="row">{{ person.$key }}</th>
+          <td>{{ person.firstName }} {{ person.lastName }}</td>
+          <td>{{ person.email }}</td>
+          <td>{{ person.mobileNumber }}</td>
+
+          <td>
+            <button
+              class="btn btn-xs btn-danger"
+              (click)="deletePerson(person)"
+            >
+              Delete
+            </button>
+            <label>--</label>
+            <button
+              class="btn btn-xs btn-danger"
+              routerLink="/update-person/{{ person.$key }}"
+            >
+              Edit
+            </button>
+            <!-- <i 
+              class="far fa-edit" 
+              routerLink="/person-update/{{ person.$key }}"
+            ></i
+            >
+            <i
+              class="far fa-trash"
+              (click)="deletePerson(person)"
+            ></i> -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- sayfalandırma -->
+  <pagination-controls
+    (pageChange)="p = $event"
+    autoHide="true"
+    responsive="true"
+  ></pagination-controls>
+</div>

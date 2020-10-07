@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "personapp-7a750": {
+      "hosting": {
+        "PersonApp": [
+          "personapp-7a750"
+        ]
+      }
+    }
+  }
+}
